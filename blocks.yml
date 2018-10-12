@@ -1,0 +1,13 @@
+--- #blocks playbook
+- hosts:  la
+  tasks:
+    - name:  get file
+      block:
+        - get_url:
+          url:  "http://bstroud1102.mylabserver.com/index.html"
+          dest: "/tmp/index_file"
+      rescue:
+        - debug msg="The file doesn't exist!"
+      always:
+        - debug: msg="Play done!"
+

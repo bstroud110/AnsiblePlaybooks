@@ -1,0 +1,9 @@
+--- #Playbook to remove httpd
+- hosts: la
+  become: yes
+  tasks:
+  - name: Remove apache
+    yum:
+          name:  httpd
+          state: absent
+

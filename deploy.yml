@@ -1,0 +1,20 @@
+---
+- hosts: la
+  become: yes
+  tasks:
+  - name: deploy app binary
+    copy:
+      src: /testbranch/test.txt
+      dest:  /var/www/html/test
+    tags:
+      - webdeploy
+- hosts: ts
+  become:  yes
+  tasks:
+    - name:  deploy faux db stuff
+      copy:
+        src: /testbranch/test2.txt
+        dest: /opt/test2.txt
+      tags:
+        - dbdeploy
+

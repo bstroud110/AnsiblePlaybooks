@@ -1,0 +1,11 @@
+--- #Playing with getting URLs from servers
+- hosts: la ts
+  tasks:
+    - name:  get files
+      get_url:
+        url:  "http://{{item}}/index.html"
+        dest: "/tmp/{{item}}"
+      ignore_errors:  yes
+      with_items:
+        - bstroud1101.mylabserver.com
+        - bstroud1102.mylabserver.com

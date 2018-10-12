@@ -1,0 +1,12 @@
+--- #Users playbook with loop action
+
+- hosts: ts
+  become:  yes
+  tasks:  
+    - name:  create users
+      user:
+        name: "{{item}}"
+      with_items:
+        - sam
+        - john
+        - bob

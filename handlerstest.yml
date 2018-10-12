@@ -1,0 +1,19 @@
+--- #Playing with Handlers
+
+- hosts:  la 
+  become:  yes
+  handlers:  
+    - name:  Restart apache
+      service:  name="httpd" state="restarted"
+      listen:  "restart web"
+  tasks:
+    - name:  Change configuration
+      replace:
+        path:  /etc/httpd/conf/httpd.conf
+        regexp:  '^DocumentRoot.*$'
+        replace: 'DocumentRoot "/opt/www"'
+        backup:  yes
+      notify:  "restart web"
+
+
+
