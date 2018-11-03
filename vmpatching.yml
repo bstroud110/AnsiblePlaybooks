@@ -1,0 +1,16 @@
+--- # Patching playbook
+
+- hosts: ts 
+  remote_user:  ansible
+  become:  yes
+  become_method:  sudo
+  connection:  ssh
+  gather_facts:  yes
+  
+  tasks:
+  - name:  Patch the system
+    yum:
+          name: '*'
+          state:  latest
+  - name:  Reboot the server after patching
+    reboot:
